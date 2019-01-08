@@ -16,4 +16,5 @@ public interface TUserMapper {
 
     int updateByPrimaryKey(TUser record);
 
+    TUser selectByUser(TUser tUser);
 }
