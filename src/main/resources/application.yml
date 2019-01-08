@@ -18,3 +18,8 @@ spring:
 mybatis:
   type-aliases-package: com.five.animailss.entity
   mapper-locations: classpath:mapper/*.xml
+
+redis:
+  host: 47.99.243.62
+  port: 6379
+  password: 123
