@@ -10,8 +10,8 @@ public class TPost {
     private String pPicture;
 
     private String pInfo;
-
-    private Date pCreatetime;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private String pCreatetime;
 
     private Integer pCount;
 
@@ -55,11 +55,11 @@ public class TPost {
         this.pInfo = pInfo == null ? null : pInfo.trim();
     }
 
-    public Date getpCreatetime() {
+    public String getpCreatetime() {
         return pCreatetime;
     }
 
-    public void setpCreatetime(Date pCreatetime) {
+    public void setpCreatetime(String pCreatetime) {
         this.pCreatetime = pCreatetime;
     }
 
