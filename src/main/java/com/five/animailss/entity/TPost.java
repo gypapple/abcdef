@@ -1,5 +1,7 @@
 package com.five.animailss.entity;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import java.util.Date;
 
 public class TPost {

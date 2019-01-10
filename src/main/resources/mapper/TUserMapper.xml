@@ -82,4 +82,13 @@
   <select id="selectByUser" resultType="com.five.animailss.entity.TUser">
     select * from t_user where phone=#{phone} and password=#{password}
   </select>
+
+  <select id="selectByPhone" resultMap="BaseResultMap" parameterType="java.lang.String">
+    select <include refid="Base_Column_List"/>
+    from t_user where phone = #{phone}
+  </select>
+
+  <update id="updateTUser" parameterType="com.five.animailss.entity.TUser">
+    update t_user set password = #{password} where id = #{id}
+  </update>
 </mapper>
