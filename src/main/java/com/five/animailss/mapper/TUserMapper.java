@@ -4,9 +4,10 @@ import com.five.animailss.entity.TUser;
 import com.five.animailss.vo.ResultBean;
 
 public interface TUserMapper {
+
     int deleteByPrimaryKey(Integer id);
 
-    int insert(TUser record);
+    int insert(TUser tUser);
 
     int insertSelective(TUser record);
 
@@ -16,5 +17,7 @@ public interface TUserMapper {
 
     int updateByPrimaryKey(TUser record);
 
-    TUser selectByUser(TUser tUser);
+    TUser selectByPhone(String phone);
+
+    int updateTUser(TUser tUser);
 }
