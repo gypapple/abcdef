@@ -5,6 +5,16 @@ import java.io.Serializable;
 public class ResultBean implements Serializable {
     private int code;
     private String msg;
+    private int count;
+
+    public int getCount() {
+        return count;
+    }
+
+    public void setCount(int count) {
+        this.count = count;
+    }
+
     private Object data;
 
     public int getCode() {
