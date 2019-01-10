@@ -79,6 +79,7 @@
       state = #{state,jdbcType=INTEGER}
     where id = #{id,jdbcType=INTEGER}
   </update>
+
   <select id="selectByUser" resultType="com.five.animailss.entity.TUser">
     select * from t_user where phone=#{phone} and password=#{password}
   </select>

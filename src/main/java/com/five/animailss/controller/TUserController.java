@@ -30,6 +30,7 @@ public class TUserController {
         }
         return bean;
     }
+
     @PostMapping("/addTUser.do")
     public ResultBean addTUser(TUser tUser) {
 

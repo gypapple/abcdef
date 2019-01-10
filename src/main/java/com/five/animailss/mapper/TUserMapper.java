@@ -4,6 +4,7 @@ import com.five.animailss.entity.TUser;
 import com.five.animailss.vo.ResultBean;
 
 public interface TUserMapper {
+
     int deleteByPrimaryKey(Integer id);
 
     int insert(TUser tUser);
