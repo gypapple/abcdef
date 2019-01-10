@@ -79,4 +79,8 @@
       state = #{state,jdbcType=INTEGER}
     where f_id = #{fId,jdbcType=INTEGER}
   </update>
+  <insert id="insertUserIdAndAnimailId">
+      insert into t_fansfocus (f_uid, f_fuid)
+    values (#{uid},#{aid})
+  </insert>
 </mapper>

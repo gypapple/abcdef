@@ -18,4 +18,5 @@ public interface TAnimailMapper {
     int updateByPrimaryKey(TAnimail record);
 
     List<TAnimail> selectAllAnimail();
+
 }
