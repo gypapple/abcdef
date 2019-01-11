@@ -1,13 +1,14 @@
 package com.five.animailss.service.impl;
 
+
 import com.five.animailss.entity.TPost;
 import com.five.animailss.mapper.TPostMapper;
 import com.five.animailss.service.TPostService;
 import com.five.animailss.util.ResultUtil;
 import com.five.animailss.vo.PageBeanVo;
 import com.five.animailss.vo.ResultBean;
-import com.five.animailss.vo.Vpost;
-import com.github.pagehelper.PageInfo;
+
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -53,10 +54,4 @@ public class TPostServiceImpl implements TPostService {
         List<TPost> list = tPostMapper.selectByCount();
         return ResultUtil.setOK("成功",list);
     }
-
-    /*@Override
-    public ResultBean query() {
-        List<Vpost> list = tPostMapper.select();
-        return ResultUtil.setOK("成功",list);
-    }*/
 }

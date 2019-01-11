@@ -2,10 +2,8 @@ package com.five.animailss.controller;
 
 import com.five.animailss.entity.TPost;
 import com.five.animailss.service.TPostService;
-import com.five.animailss.util.ResultUtil;
 import com.five.animailss.vo.PageBeanVo;
 import com.five.animailss.vo.ResultBean;
-import com.github.pagehelper.PageInfo;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
@@ -52,4 +50,5 @@ public class TPostController {
     public ResultBean queryCount() {
         return tPostService.queryCount();
     }
+
 }
