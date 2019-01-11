@@ -7,7 +7,9 @@ public class TUserinfo {
 
     private String picture;
 
-    private String info;
+    private String area;
+
+    private String addr;
 
     private Integer uid;
 
@@ -37,12 +39,20 @@ public class TUserinfo {
         this.picture = picture == null ? null : picture.trim();
     }
 
-    public String getInfo() {
-        return info;
+    public String getArea() {
+        return area;
     }
 
-    public void setInfo(String info) {
-        this.info = info == null ? null : info.trim();
+    public void setArea(String area) {
+        this.area = area == null ? null : area.trim();
+    }
+
+    public String getAddr() {
+        return addr;
+    }
+
+    public void setAddr(String addr) {
+        this.addr = addr == null ? null : addr.trim();
     }
 
     public Integer getUid() {

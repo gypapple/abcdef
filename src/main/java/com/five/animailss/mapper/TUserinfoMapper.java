@@ -5,13 +5,14 @@ import com.five.animailss.entity.TUserinfo;
 public interface TUserinfoMapper {
     int deleteByPrimaryKey(Integer id);
 
-    int insert(TUserinfo record);
+    int insert(TUserinfo info);
 
     int insertSelective(TUserinfo record);
 
-    TUserinfo selectByPrimaryKey(Integer id);
+    TUserinfo selectByUid(Integer uid);
 
     int updateByPrimaryKeySelective(TUserinfo record);
 
-    int updateByPrimaryKey(TUserinfo record);
+    int updateInfo(TUserinfo info);
+
 }
