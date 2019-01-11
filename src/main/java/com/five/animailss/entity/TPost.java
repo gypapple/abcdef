@@ -2,12 +2,10 @@ package com.five.animailss.entity;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
-import java.util.Date;
+import java.util.List;
 
 public class TPost {
     private Integer pId;
-
-    private String pName;
 
     private String pPicture;
 
@@ -16,8 +14,6 @@ public class TPost {
     private String pCreatetime;
 
     private Integer pCount;
-
-    private String pEval;
 
     private Integer pType;
 
@@ -31,14 +27,6 @@ public class TPost {
 
     public void setpId(Integer pId) {
         this.pId = pId;
-    }
-
-    public String getpName() {
-        return pName;
-    }
-
-    public void setpName(String pName) {
-        this.pName = pName == null ? null : pName.trim();
     }
 
     public String getpPicture() {
@@ -71,14 +59,6 @@ public class TPost {
 
     public void setpCount(Integer pCount) {
         this.pCount = pCount;
-    }
-
-    public String getpEval() {
-        return pEval;
-    }
-
-    public void setpEval(String pEval) {
-        this.pEval = pEval == null ? null : pEval.trim();
     }
 
     public Integer getpType() {

@@ -3,18 +3,26 @@
 <mapper namespace="com.five.animailss.mapper.TPostMapper" >
   <resultMap id="BaseResultMap" type="com.five.animailss.entity.TPost" >
     <id column="p_id" property="pId" jdbcType="INTEGER" />
-    <result column="p_name" property="pName" jdbcType="VARCHAR" />
     <result column="p_picture" property="pPicture" jdbcType="VARCHAR" />
     <result column="p_info" property="pInfo" jdbcType="VARCHAR" />
     <result column="p_createtime" property="pCreatetime" jdbcType="TIMESTAMP" />
     <result column="p_count" property="pCount" jdbcType="INTEGER" />
-    <result column="p_eval" property="pEval" jdbcType="VARCHAR" />
     <result column="p_type" property="pType" jdbcType="INTEGER" />
     <result column="p_uid" property="pUid" jdbcType="INTEGER" />
     <result column="p_state" property="pState" jdbcType="INTEGER" />
   </resultMap>
+  <!--<resultMap id="BaseResultMap1" type="com.five.animailss.vo.Vpost">
+    <id column="p_id" property="pId" jdbcType="INTEGER" />
+    <result column="p_picture" property="pPicture" jdbcType="VARCHAR" />
+    <result column="p_info" property="pInfo" jdbcType="VARCHAR" />
+    <result column="p_createtime" property="pCreatetime" jdbcType="TIMESTAMP" />
+    <result column="p_count" property="pCount" jdbcType="INTEGER" />
+    <result column="p_type" property="pType" jdbcType="INTEGER" />
+    <result column="p_uid" property="pUid" jdbcType="INTEGER" />
+    <result column="list" property="list" />
+  </resultMap>-->
   <sql id="Base_Column_List" >
-    p_id, p_name, p_picture, p_info, p_createtime, p_count, p_eval, p_type, p_uid, p_state
+    p_id, p_name, p_picture, p_info, p_createtime, p_count, p_type, p_uid, p_state
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
@@ -27,13 +35,13 @@
     where p_id = #{pId,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="com.five.animailss.entity.TPost" >
-    insert into t_post (p_id, p_name, p_picture, 
+    insert into t_post (p_id, p_picture,
       p_info, p_createtime, p_count, 
-      p_eval, p_type, p_uid, 
+      p_type, p_uid,
       p_state)
-    values (#{pId,jdbcType=INTEGER}, #{pName,jdbcType=VARCHAR}, #{pPicture,jdbcType=VARCHAR}, 
+    values (#{pId,jdbcType=INTEGER}, #{pPicture,jdbcType=VARCHAR},
       #{pInfo,jdbcType=VARCHAR}, #{pCreatetime,jdbcType=TIMESTAMP}, #{pCount,jdbcType=INTEGER}, 
-      #{pEval,jdbcType=VARCHAR}, #{pType,jdbcType=INTEGER}, #{pUid,jdbcType=INTEGER}, 
+      #{pType,jdbcType=INTEGER}, #{pUid,jdbcType=INTEGER},
       #{pState,jdbcType=INTEGER})
   </insert>
   <insert id="insertSelective" parameterType="com.five.animailss.entity.TPost" >
@@ -42,9 +50,7 @@
       <if test="pId != null" >
         p_id,
       </if>
-      <if test="pName != null" >
-        p_name,
-      </if>
+
       <if test="pPicture != null" >
         p_picture,
       </if>
@@ -56,9 +62,6 @@
       </if>
       <if test="pCount != null" >
         p_count,
-      </if>
-      <if test="pEval != null" >
-        p_eval,
       </if>
       <if test="pType != null" >
         p_type,
@@ -74,9 +77,7 @@
       <if test="pId != null" >
         #{pId,jdbcType=INTEGER},
       </if>
-      <if test="pName != null" >
-        #{pName,jdbcType=VARCHAR},
-      </if>
+
       <if test="pPicture != null" >
         #{pPicture,jdbcType=VARCHAR},
       </if>
@@ -88,9 +89,6 @@
       </if>
       <if test="pCount != null" >
         #{pCount,jdbcType=INTEGER},
-      </if>
-      <if test="pEval != null" >
-        #{pEval,jdbcType=VARCHAR},
       </if>
       <if test="pType != null" >
         #{pType,jdbcType=INTEGER},
@@ -106,9 +104,7 @@
   <update id="updateByPrimaryKeySelective" parameterType="com.five.animailss.entity.TPost" >
     update t_post
     <set >
-      <if test="pName != null" >
-        p_name = #{pName,jdbcType=VARCHAR},
-      </if>
+
       <if test="pPicture != null" >
         p_picture = #{pPicture,jdbcType=VARCHAR},
       </if>
@@ -120,9 +116,6 @@
       </if>
       <if test="pCount != null" >
         p_count = #{pCount,jdbcType=INTEGER},
-      </if>
-      <if test="pEval != null" >
-        p_eval = #{pEval,jdbcType=VARCHAR},
       </if>
       <if test="pType != null" >
         p_type = #{pType,jdbcType=INTEGER},
@@ -138,15 +131,42 @@
   </update>
   <update id="updateByPrimaryKey" parameterType="com.five.animailss.entity.TPost" >
     update t_post
-    set p_name = #{pName,jdbcType=VARCHAR},
+    set
       p_picture = #{pPicture,jdbcType=VARCHAR},
       p_info = #{pInfo,jdbcType=VARCHAR},
       p_createtime = #{pCreatetime,jdbcType=TIMESTAMP},
       p_count = #{pCount,jdbcType=INTEGER},
-      p_eval = #{pEval,jdbcType=VARCHAR},
       p_type = #{pType,jdbcType=INTEGER},
       p_uid = #{pUid,jdbcType=INTEGER},
       p_state = #{pState,jdbcType=INTEGER}
     where p_id = #{pId,jdbcType=INTEGER}
   </update>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select<include refid="Base_Column_List"/>
+    from t_post limit #{index},#{limit}
+  </select>
+
+  <!--<select id="select" resultMap="BaseResultMap1">
+    select p.* ,u.name
+    from t_post p inner join t_userinfo u on p.uid=u.id
+  </select>-->
+  <select id="selectCount" resultType="int">
+    select count(*) from t_post
+  </select>
+  <update id="updateCount" parameterType="com.five.animailss.entity.TPost">
+    update t_post set p_count=p_count+1
+    where p_id=#{pId}
+  </update>
+  <select id="selectByType" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select <include refid="Base_Column_List"/>
+    from t_post where p_type=#{pType}
+  </select>
+  <select id="selectByTime" resultMap="BaseResultMap">
+    select<include refid="Base_Column_List"/>
+    from t_post ORDER BY p_createtime desc
+  </select>
+  <select id="selectByCount" resultMap="BaseResultMap">
+    select<include refid="Base_Column_List"/>
+    from t_post ORDER BY p_count desc
+  </select>
 </mapper>

@@ -9,7 +9,7 @@ import java.util.List;
 
 public interface TAnimailService {
     //查询所有的宠物
-    PageInfo<TAnimail> selectAllAnimail(String pageNum, String pageSize);
+    PageInfo<TAnimail> selectAllAnimailList(String pageNum, String pageSize);
     //根据id查询宠物信息
     TAnimail selectById(Integer id);
     //用户关注某个宠物
