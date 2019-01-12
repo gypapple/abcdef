@@ -9,6 +9,7 @@ import com.five.animailss.vo.PageBeanVo;
 import com.five.animailss.vo.ResultBean;
 
 
+import com.five.animailss.vo.VPost;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -24,11 +25,16 @@ public class TPostServiceImpl implements TPostService {
     @Override
     public ResultBean modifyCount(TPost tPost) {
         tPostMapper.updateTCount(tPost);
-        return ResultUtil.setOK("成功",null);
+        if(tPost != null) {
+            return ResultUtil.setOK("成功",null);
+        }else {
+            return  ResultUtil.setError("失败",null);
+        }
+
     }
 
     @Override
-    public PageBeanVo<TPost> queryByPage(Integer page, Integer limit) {
+    public PageBeanVo<VPost> queryByPage(Integer page, Integer limit) {
         Map<String,Object> map = new HashMap<>();
         map.put("index",(page-1)*limit);
         map.put("limit",limit);
@@ -39,19 +45,51 @@ public class TPostServiceImpl implements TPostService {
 
     @Override
     public ResultBean queryByPtype(Integer pType) {
-        List<TPost> list = tPostMapper.selectByType(pType);
-        return ResultUtil.setOK("成功",list);
+        List<VPost> list = tPostMapper.selectByType(pType);
+        if (pType != null) {
+            return ResultUtil.setOK("成功",list);
+        }else {
+            return ResultUtil.setError("失败",null);
+        }
+
     }
 
     @Override
     public ResultBean queryTime() {
-        List<TPost> list = tPostMapper.selectByTime();
-        return ResultUtil.setOK("成功",list);
+        List<VPost> list = tPostMapper.selectByTime();
+        if (list != null) {
+            return ResultUtil.setOK("成功",list);
+        }else {
+            return ResultUtil.setError("失败",null);
+        }
     }
 
     @Override
     public ResultBean queryCount() {
-        List<TPost> list = tPostMapper.selectByCount();
-        return ResultUtil.setOK("成功",list);
+        List<VPost> list = tPostMapper.selectByCount();
+        if (list != null) {
+            return ResultUtil.setOK("成功",list);
+        }else {
+            return ResultUtil.setError("失败",null);
+        }
+    }
+
+    @Override
+    public ResultBean queryByUid(Integer pUid) {
+        List<VPost> list = tPostMapper.selectByUid(pUid);
+        if (list != null) {
+            return ResultUtil.setOK("成功",list);
+        }else {
+            return ResultUtil.setError("失败",null);
+        }
+    }
+    @Override
+    public ResultBean selectAllTPost() {
+        List<VPost> list = tPostMapper.selectAllTPost();
+        if (list.equals(null)) {
+            return ResultUtil.setError("查询失败",null);
+        } else {
+            return ResultUtil.setOK("查询成功",list);
+        }
     }
 }

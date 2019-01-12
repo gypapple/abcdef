@@ -11,16 +11,17 @@
     <result column="p_uid" property="pUid" jdbcType="INTEGER" />
     <result column="p_state" property="pState" jdbcType="INTEGER" />
   </resultMap>
-  <!--<resultMap id="BaseResultMap1" type="com.five.animailss.vo.Vpost">
+  <resultMap id="BaseResultMap1" type="com.five.animailss.vo.VPost">
     <id column="p_id" property="pId" jdbcType="INTEGER" />
     <result column="p_picture" property="pPicture" jdbcType="VARCHAR" />
     <result column="p_info" property="pInfo" jdbcType="VARCHAR" />
     <result column="p_createtime" property="pCreatetime" jdbcType="TIMESTAMP" />
     <result column="p_count" property="pCount" jdbcType="INTEGER" />
     <result column="p_type" property="pType" jdbcType="INTEGER" />
-    <result column="p_uid" property="pUid" jdbcType="INTEGER" />
-    <result column="list" property="list" />
-  </resultMap>-->
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="picture" property="picture" jdbcType="VARCHAR" />
+    <result column="p_state" property="pState" jdbcType="INTEGER" />
+  </resultMap>
   <sql id="Base_Column_List" >
     p_id, p_name, p_picture, p_info, p_createtime, p_count, p_type, p_uid, p_state
   </sql>
@@ -141,9 +142,9 @@
       p_state = #{pState,jdbcType=INTEGER}
     where p_id = #{pId,jdbcType=INTEGER}
   </update>
-  <select id="selectAll" resultMap="BaseResultMap">
-    select<include refid="Base_Column_List"/>
-    from t_post limit #{index},#{limit}
+  <select id="selectAll" resultMap="BaseResultMap1">
+    select p.p_id,p.p_picture,p.p_info,p.p_createtime,p.p_count,p.p_type,u.name,u.picture
+    from t_post p inner join t_userinfo u on p.p_uid=u.id limit #{index},#{limit}
   </select>
 
   <!--<select id="select" resultMap="BaseResultMap1">
@@ -157,16 +158,21 @@
     update t_post set p_count=p_count+1
     where p_id=#{pId}
   </update>
-  <select id="selectByType" parameterType="java.lang.Integer" resultMap="BaseResultMap">
-    select <include refid="Base_Column_List"/>
-    from t_post where p_type=#{pType}
+  <select id="selectByType" parameterType="java.lang.Integer" resultMap="BaseResultMap1">
+    select p.p_id,p.p_picture,p.p_info,p.p_createtime,p.p_count,p.p_type,u.name,u.picture
+    from t_post p inner join t_userinfo u on p.p_uid=u.id where p_type=#{pType}
   </select>
-  <select id="selectByTime" resultMap="BaseResultMap">
-    select<include refid="Base_Column_List"/>
-    from t_post ORDER BY p_createtime desc
+  <select id="selectByTime" resultMap="BaseResultMap1">
+    select p.p_id,p.p_picture,p.p_info,p.p_createtime,p.p_count,p.p_type,u.name,u.picture
+    from t_post p inner join t_userinfo u on p.p_uid=u.id ORDER BY p_createtime desc
   </select>
-  <select id="selectByCount" resultMap="BaseResultMap">
-    select<include refid="Base_Column_List"/>
-    from t_post ORDER BY p_count desc
+  <select id="selectByCount" resultMap="BaseResultMap1">
+     select p.p_id,p.p_picture,p.p_info,p.p_createtime,p.p_count,p.p_type,u.name,u.picture
+    from t_post p inner join t_userinfo u on p.p_uid=u.id ORDER BY p_count desc
+  </select>
+
+  <select id="selectByUid" resultType="java.lang.Integer" resultMap="BaseResultMap1">
+      select p.p_id,p.p_picture,p.p_info,p.p_createtime,p.p_count,p.p_type,u.name,u.picture
+    from t_post p inner join t_userinfo u on p.p_uid=u.id where p_uid=#{pUid}
   </select>
 </mapper>

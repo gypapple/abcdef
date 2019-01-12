@@ -4,6 +4,7 @@ import com.five.animailss.entity.TPost;
 import com.five.animailss.service.TPostService;
 import com.five.animailss.vo.PageBeanVo;
 import com.five.animailss.vo.ResultBean;
+import com.five.animailss.vo.VPost;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
@@ -27,7 +28,7 @@ public class TPostController {
     }
     @ApiOperation("分页查询")
     @GetMapping("/listTPostBypage")
-    public PageBeanVo<TPost> queryByPage(@ApiParam(value = "page表示查询的第几页，limit表示每页多少条数据") Integer page, Integer limit) {
+    public PageBeanVo<VPost> queryByPage(@ApiParam(value = "page表示查询的第几页，limit表示每页多少条数据") Integer page, Integer limit) {
         return tPostService.queryByPage(page,limit);
     }
     @ApiOperation("pType表示社区的首页，1表示求助问答，2表示狗狗，3表示猫猫，4表示爪友生活，5表示其他宠物，")
@@ -36,10 +37,6 @@ public class TPostController {
         return tPostService.queryByPtype(pType);
     }
 
-    /*@GetMapping("/list")
-    public ResultBean query() {
-        return tPostService.query();
-    }*/
     @GetMapping("/tPostTime")
     @ApiOperation("根据帖子发表时间排序，是最新这个模块")
     public ResultBean queryTime() {
@@ -49,6 +46,16 @@ public class TPostController {
     @ApiOperation("根据点赞的数量排序帖子，是热门这个模块")
     public ResultBean queryCount() {
         return tPostService.queryCount();
+    }
+    @GetMapping("/tPostByUid")
+    @ApiOperation("查询自己发表的帖子")
+    public ResultBean queryByUid(@ApiParam(value = "pUid就是用户登陆所带的id") Integer pUid) {
+        return tPostService.queryByUid(pUid);
+    }
+    @ApiOperation(notes = "响应数据",tags = {"查询所有的帖子信息"},value = "帖子信息")
+    @GetMapping("/gettposting")
+    public ResultBean tpostingList(){
+        return tPostService.selectAllTPost();
     }
 
 }

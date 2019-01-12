@@ -1,7 +1,8 @@
 package com.five.animailss.mapper;
 
 import com.five.animailss.entity.TPost;
-import com.five.animailss.vo.Vpost;
+import com.five.animailss.vo.VPost;
+
 
 import java.util.List;
 import java.util.Map;
@@ -21,14 +22,18 @@ public interface TPostMapper {
 
     int updateTCount(TPost tPost);
 
-    List<TPost> selectAll(Map<String,Object> param);
+    List<VPost> selectAll(Map<String,Object> param);
 
     int selectCount();
     /*List<Vpost> select();*/
 
-    List<TPost> selectByTime();
+    List<VPost> selectByTime();
 
-    List<TPost> selectByCount();
+    List<VPost> selectByCount();
 
-    List<TPost> selectByType(Integer pType);
+    List<VPost> selectByType(Integer pType);
+
+    List<VPost> selectByUid(Integer Uid);
+
+    List<VPost> selectAllTPost();
 }
